@@ -97,3 +97,23 @@ for i in range(0,len(friends_names)):
     i =+ 1
 print (friends)
 print ("Лена живёт в городе " + friends['Лена'])
+
+
+# Еще Словари
+def is_anyone_in(collection, city):
+    if city in collection.values():  # если есть среди значений словаря collection 
+        for name in collection:  # переберите все ключи словаря
+            if city == collection[name]:  # если соответствующее ключу значение равно city
+                print('В городе ' + city + ' живёт ' + name + '.')
+    else:
+        print('Пока никого.')
+
+friends = {
+    'Серёга': 'Омск', 
+    'Соня': 'Москва', 
+    'Дима': 'Челябинск', 
+    'Алина': 'Хабаровск', 
+    'Егор': 'Пермь'
+}
+
+is_anyone_in(friends, 'Хабаровск')
