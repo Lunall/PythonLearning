@@ -117,3 +117,33 @@ friends = {
 }
 
 is_anyone_in(friends, 'Хабаровск')
+
+# И еще :)
+# напишите здесь функцию print_shopping_list(),
+# подобрав уникальные названия продуктов и сложив значения
+def print_shopping_list(pizza, salad):
+    pizza_set = set(pizza)
+    salad_set = set(salad)
+    full_list = pizza_set.union(salad_set)
+    for i in full_list:
+        if (i in pizza) and (i in salad):  
+            total_value = pizza[i] + salad[i]
+            print(i+':', total_value)
+        elif i in pizza:
+            print(i+':', pizza[i])
+        elif i in salad:
+            print(i+':', salad[i])
+    
+pizza = {'мука, кг': 1,
+         'помидоры, кг': 1.5,
+         'шампиньоны, кг': 1.5,
+         'сыр, кг': 0.8,
+         'оливковое масло, л': 0.1,
+         'дрожжи, г': 50}
+salad = {'огурцы, кг': 1,
+         'перцы, кг': 1,
+         'помидоры, кг': 1.5,
+         'оливковое масло, л': 0.1,
+         'листья салата, кг': 0.4}
+
+print_shopping_list(pizza, salad)
