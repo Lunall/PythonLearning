@@ -211,3 +211,17 @@ queries = [
 for q in queries:
     result = check_query(q)
     print(q, '-', result)
+
+# f-строки
+def calc_stat(listened):  # от англ. calculate statistics, посчитать статистику
+    N = len(listened)        # длинна списка
+    total_s = 0
+    for i in range(0, len(listened)): 
+        total_s = total_s + listened[i]
+    print(total_s)
+    M = total_s // 60
+    S = total_s % 60
+    return f'Вы прослушали {N} песен, общей продолжительностью {M} минут и {S} секунд.'
+
+        
+print(calc_stat([193, 148, 210, 144, 174, 159, 163, 189, 230, 204]))
