@@ -225,3 +225,73 @@ def calc_stat(listened):  # от англ. calculate statistics, посчита�
 
         
 print(calc_stat([193, 148, 210, 144, 174, 159, 163, 189, 230, 204]))
+
+
+# Запросы к друзьям
+DATABASE = {
+    'Сергей': 'Омск',
+    'Соня': 'Москва',
+    'Миша': 'Москва',
+    'Дима': 'Челябинск',
+    'Алина': 'Красноярск',
+    'Егор': 'Пермь',
+    'Коля': 'Красноярск'
+}
+
+def format_count_friends(count_friends):
+    if count_friends == 1:
+        return '1 друг'
+    elif 2 <= count_friends <= 4:
+        return f'{count_friends} друга'
+    else:
+        return f'{count_friends} друзей'
+
+
+def process_anfisa(query):
+    if query == 'сколько у меня друзей?':
+        count_string = format_count_friends(len(DATABASE))
+        return f'У тебя {count_string}'
+    elif query == 'кто все мои друзья?':
+        friends_string = ', '.join(DATABASE.keys())
+        return f'Твои друзья: {friends_string}'
+    elif query == 'где все мои друзья?':
+        unique_cities = set(DATABASE.values())
+        cities_string = ', '.join(unique_cities)
+        return f'Твои друзья в городах: {cities_string}'
+    else:
+        return '<неизвестный запрос>'
+
+    
+def process_friend(name, query):    
+    if name in DATABASE:
+        if query == 'ты где?':
+            return f'{name} в городе {DATABASE[name]}'
+        else:
+            return '<неизвестный запрос>'
+    else: 
+        return f'У тебя нет друга по имени {name}'
+    
+def process_query(query):
+    query_name_split = query.split(', ')
+    if query_name_split[0] == "Анфиса":
+        return process_anfisa(query_name_split[1])
+    else:
+        return process_friend(query_name_split[0], query_name_split[1])
+
+
+def runner():
+    queries = [
+        'Анфиса, сколько у меня друзей?',
+        'Анфиса, кто все мои друзья?',
+        'Анфиса, где все мои друзья?',
+        'Анфиса, кто виноват?',
+        'Коля, ты где?',
+        'Соня, что делать?',
+        'Антон, ты где?'
+        
+    ]
+    for query in queries:
+        print(query, '-', process_query(query))
+
+
+runner()
