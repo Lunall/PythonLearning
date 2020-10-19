@@ -295,3 +295,31 @@ def runner():
 
 
 runner()
+
+# Библиотека datetime и формат UTC
+import datetime as dt
+
+DATABASE = {
+    'Соня': 'Москва',
+    'Дима': 'Челябинск',
+    'Алина': 'Красноярск',
+    'Егор': 'Пермь'
+}
+
+UTC_OFFSET = {
+    'Санкт-Петербург': 3,
+    'Москва': 3,
+    'Самара': 4,
+    'Новосибирск': 7,
+    'Красноярск': 7
+}
+
+
+def what_time(friend):
+    friends_city = DATABASE[friend]
+    city_time = dt.datetime.utcnow() + dt.timedelta(hours=UTC_OFFSET[friends_city])
+    return city_time 
+
+
+print(what_time('Алина'))
+
