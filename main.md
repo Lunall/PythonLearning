@@ -318,7 +318,7 @@ UTC_OFFSET = {
 def what_time(friend):
     friends_city = DATABASE[friend]
     city_time = dt.datetime.utcnow() + dt.timedelta(hours=UTC_OFFSET[friends_city])
-    return city_time 
+    return city_time.strftime('%H:%M')
 
 
 print(what_time('Алина'))
